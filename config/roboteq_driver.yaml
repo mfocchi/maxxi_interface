@@ -1,0 +1,13 @@
+port: "/dev/ttyUSB0"
+motor_max_rpm: 1500.0
+motor_max_current_amp: 60.0
+motor_max_torque_Nm: 1.0
+enable_system_topic: true
+enable_encoder_topic: true
+enable_io_topic: true
+pub_rate_system_Hz: 2
+pub_rate_feedback_Hz: 20
+pulse_per_revolution: 1024.0 #MEC22-1024-6.000-2L8
+sprocket_radius_m: 0.085
+track_distance_m: 0.62
+gearbox_ratio: 30.0
