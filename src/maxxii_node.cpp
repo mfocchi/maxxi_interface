@@ -222,7 +222,7 @@ public:
     void sendEncoderMessage()
     {
         sensor_msgs::msg::JointState msg;
-
+        msg.header.stamp = this->get_clock()->now();
         msg.name = {"left", "right"};
         msg.position = std::vector<double>{
             EncoderLeft->getRadiants(),
