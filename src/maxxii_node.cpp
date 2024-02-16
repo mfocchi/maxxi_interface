@@ -224,15 +224,19 @@ public:
         sensor_msgs::msg::JointState msg;
         msg.header.stamp = this->get_clock()->now();
         msg.name = {"left", "right"};
+        // for some reason left and right are swapped (right is left)
         msg.position = std::vector<double>{
-            EncoderLeft->getRadiants(),
-            EncoderRight->getRadiants()};
+            EncoderRight->getRadiants(),
+            EncoderLeft->getRadiants()};
+            
         msg.velocity = std::vector<double>{
-            EncoderLeft->getSpeedRads(),
-            EncoderRight->getSpeedRads()};
+            EncoderRight->getSpeedRads(),
+            EncoderLeft->getSpeedRads()};
+      
         msg.effort = std::vector<double>{
-            MotorLeft->getCurrent(),
-            MotorRight->getCurrent()};
+            MotorRight->getCurrent(),
+            MotorLeft->getCurrent()};
+          
 
         enc_pub->publish(msg);
     }
