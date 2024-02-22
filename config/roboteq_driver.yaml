@@ -6,7 +6,7 @@ enable_system_topic: true
 enable_encoder_topic: true
 enable_io_topic: true
 pub_rate_system_Hz: 2
-pub_rate_feedback_Hz: 20
+pub_rate_feedback_Hz: 200
 pulse_per_revolution: 1024.0 #MEC22-1024-6.000-2L8
 sprocket_radius_m: 0.085
 track_distance_m: 0.62
