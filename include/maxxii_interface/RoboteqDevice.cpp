@@ -50,6 +50,8 @@ int RoboteqDevice::Connect(string port) {
     InitPort();
     cout << "...done." << endl;
 
+     // SetConfig(_RSBR, 0);
+
     int status;
     string response;
     cout << "Detecting device version...";
@@ -87,8 +89,9 @@ void RoboteqDevice::InitPort() {
     if (!IsConnected())
         return;
 
+  
     // Get the existing Comm Port Attributes in cwrget
-    int BAUDRATE = B115200;
+    int BAUDRATE = B230400;//B115200;
     struct termios newtio;
     tcgetattr(handle, &newtio);
 
