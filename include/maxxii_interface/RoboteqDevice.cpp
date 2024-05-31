@@ -39,11 +39,11 @@ int RoboteqDevice::Connect(string port) {
     cout << "Opening port: '" << port << "'...";
     handle = open(port.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
     if (handle == RQ_INVALID_HANDLE) {
-        cout << "failed." << endl;
+        cout <<RED<< "Opening port: '" << port << "failed. RESTART THE NUC!!!!!!!!!!!!!" <<RESET << endl;
         return RQ_ERR_OPEN_PORT;
     }
-
-    cout << "succeeded." << endl;
+    cout << "Opening port" << port <<" succeeded '" << port << "'...";
+    
     fcntl(handle, F_SETFL, O_APPEND | O_NONBLOCK & ~FNDELAY);
 
     cout << "Initializing port...";

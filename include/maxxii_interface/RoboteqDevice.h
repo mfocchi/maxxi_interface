@@ -9,6 +9,10 @@ using namespace std;
 
 using namespace std;
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"      /* Red */
+#define BLUE     "\033[34m"      /* Blue */
+
 string ReplaceString(string source, string find, string replacement);
 void sleepms(int milliseconds);
 
