@@ -167,7 +167,7 @@ int RoboteqDevice::ReadAll(string &str) {
 
 int RoboteqDevice::MixedModeMotorMove(float throttle, float steering, string &response) {
     int status;
-    int waitms = 10;
+    int waitms = 1;
     string read;
     response = "";
 
@@ -321,7 +321,7 @@ int RoboteqDevice::SetCommand(int commandItem, int index, int value) {
     if (index < 0)
         return RQ_INDEX_OUT_RANGE;
 
-    int status = IssueCommand("!", command, args, 10, response, true);
+    int status = IssueCommand("!", command, args, 1, response, true);
     if (status != RQ_SUCCESS)
         return status;
     if (response != "+")

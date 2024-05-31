@@ -61,7 +61,7 @@ public:
         this->declare_parameter("enable_encoder_topic", true);
         this->declare_parameter("enable_io_topic", false);
         this->declare_parameter("pub_rate_system_Hz", 1);
-        this->declare_parameter("pub_rate_feedback_Hz", 20);
+        this->declare_parameter("pub_rate_feedback_Hz", 200);
         this->declare_parameter("pulse_per_revolution", 1024.0);
 		this->declare_parameter("control_mode", 0);
 
