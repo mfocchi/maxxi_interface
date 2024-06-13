@@ -19,6 +19,14 @@
 #define VELOCITY_CTRL_MODE 0
 #define TORQUE_CTRL_MODE 1
 
+
+#define RESET   "\033[0m"
+#define RED     "\033[31m"      /* Red */
+#define prt(x) std::cout << RED << #x " = \n" << x << "\n" << RESET<< std::endl;
+#define prt_vec(x) for( int i = 0; i < x.size(); i++) {std::cout << x[i] << " \n";};
+
+
+
 class TrackedRobotNode : public rclcpp::Node 
 {
 private:
@@ -54,7 +62,6 @@ public:
         std::string port;
         int rate_feedback, rate_system;
         this->declare_parameter("port", "/dev/ttyUSB0");
-        this->declare_parameter("motor_max_rpm", 1500.0);
         this->declare_parameter("motor_max_torque_Nm", 1.0);
         this->declare_parameter("motor_max_current_amp", 60.0);
         this->declare_parameter("enable_system_topic", true);

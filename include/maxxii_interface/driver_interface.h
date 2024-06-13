@@ -12,7 +12,7 @@
 
 #define LEFT_ID 1
 #define RIGHT_ID 2
-#define CTRL_MOTOR_MAX_VALUE 1000
+#define CTRL_MOTOR_MAX_VALUE 1000 //NEVER CHANGE THIS 
 
 typedef enum Position {LEFT, RIGHT} Position;
 

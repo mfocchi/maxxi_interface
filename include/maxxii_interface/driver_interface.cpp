@@ -9,6 +9,7 @@ RoboteqDriverInterface::RoboteqDriverInterface(double max_vel, double max_amp, d
     this->max_velocity = max_vel;
     this->max_current = max_amp;
     this->max_torque = max_tau;
+    device.setMaxRPM(max_vel);
 }
 
 void RoboteqDriverInterface::connectToDevice(std::string port)

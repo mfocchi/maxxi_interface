@@ -1,5 +1,5 @@
 port: "/dev/ttyUSB0"
-motor_max_rpm: 1500.0
+motor_max_rpm: 2000.0
 motor_max_current_amp: 60.0
 motor_max_torque_Nm: 1.0
 enable_system_topic: true

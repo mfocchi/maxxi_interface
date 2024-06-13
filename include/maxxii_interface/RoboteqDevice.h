@@ -52,8 +52,10 @@ public:
 
 	int MixedModeMotorMove(float throttle, float steering, string &response);
 
+	double max_rpm_ = 2000.;
 	RoboteqDevice();
 	~RoboteqDevice();
+	void 	setMaxRPM(const double max_rpm);
 };
 
 #endif

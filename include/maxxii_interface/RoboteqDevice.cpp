@@ -19,11 +19,23 @@ using namespace std;
 #define BUFFER_SIZE 1024
 #define MISSING_VALUE -1024
 
+
+#define RESET   "\033[0m"
+#define RED     "\033[31m"      /* Red */
+#define prt(x) std::cout << RED << #x " = \n" << x << "\n" << RESET<< std::endl;
+#define prt_vec(x) for( int i = 0; i < x.size(); i++) {std::cout << x[i] << " \n";};
+
+
 RoboteqDevice::RoboteqDevice() {
     handle = RQ_INVALID_HANDLE;
 }
 RoboteqDevice::~RoboteqDevice() {
     Disconnect();
+}
+
+void RoboteqDevice::setMaxRPM(const double max_rpm) 
+{
+    max_rpm_ = max_rpm;
 }
 
 bool RoboteqDevice::IsConnected() {
@@ -51,6 +63,11 @@ int RoboteqDevice::Connect(string port) {
     cout << "...done." << endl;
 
      // SetConfig(_RSBR, 0);
+    
+    //SETTING MAX SPEED TO 2000 RPM
+    SetConfig(_MXRPM, 0,(int)max_rpm_);
+    SetConfig(_MXRPM, 1,(int)max_rpm_);
+
 
     int status;
     string response;
