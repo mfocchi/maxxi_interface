@@ -62,6 +62,7 @@ public:
         std::string port;
         int rate_feedback, rate_system;
         this->declare_parameter("port", "/dev/ttyUSB0");
+        this->declare_parameter("motor_max_rpm", 2000.0);
         this->declare_parameter("motor_max_torque_Nm", 1.0);
         this->declare_parameter("motor_max_current_amp", 60.0);
         this->declare_parameter("enable_system_topic", true);
@@ -96,23 +97,25 @@ public:
         }
 
         rmw_qos_profile_t qos_profile = rmw_qos_profile_sensor_data;
-		auto qos = rclcpp::QoS(rclcpp::QoSInitialization(qos_profile.history, 10), qos_profile);
-        
+        //old
+		//auto qos = rclcpp::QoS(rclcpp::QoSInitialization(qos_profile.history, 10), qos_profile);
+        auto qos_ctrl = rclcpp::QoS(rclcpp::QoSInitialization(qos_profile.history, 1), qos_profile);
+
         sys_pub = this->create_publisher<std_msgs::msg::String>("doretta/sys", 1);
         enc_pub = this->create_publisher<sensor_msgs::msg::JointState>("doretta/wheels", 1);
-        io_pub = this->create_publisher<std_msgs::msg::String>("doretta/io", 1);
+        //io_pub = this->create_publisher<std_msgs::msg::String>("doretta/io", 1);
 
         if(control_mode == VELOCITY_CTRL_MODE)
         {
             cmd_sub = this->create_subscription<sensor_msgs::msg::JointState>(
-                "/command", qos, 
+                "/command", qos_ctrl, 
                 std::bind(&TrackedRobotNode::velocityCmdCallback, this, std::placeholders::_1)
                 );
         }
         if(control_mode == TORQUE_CTRL_MODE)
         {
             cmd_sub = this->create_subscription<sensor_msgs::msg::JointState>(
-                "/command", qos, 
+                "/command", qos_ctrl, 
                 std::bind(&TrackedRobotNode::toruqeCmdCallback, this, std::placeholders::_1)
                 );
         }
@@ -121,11 +124,11 @@ public:
             std::chrono::milliseconds(int(MILLI / rate_feedback)), 
             std::bind(&TrackedRobotNode::feedbackCallback, this)
             );
-        timer_sys = this->create_wall_timer(
-            std::chrono::milliseconds(int(MILLI / rate_system)), 
-            std::bind(&TrackedRobotNode::systemCallback, this)
-            );
-        Device->printFirmware();
+        // timer_sys = this->create_wall_timer(
+        //     std::chrono::milliseconds(int(MILLI / rate_system)), 
+        //     std::bind(&TrackedRobotNode::systemCallback, this)
+        //     );
+        // Device->printFirmware();
     }
     ~TrackedRobotNode(){}
 
