@@ -91,7 +91,7 @@ void RoboteqDevice::InitPort() {
 
   
     // Get the existing Comm Port Attributes in cwrget
-    int BAUDRATE = B230400;//B115200;
+    int BAUDRATE = B115200;
     struct termios newtio;
     tcgetattr(handle, &newtio);
 
