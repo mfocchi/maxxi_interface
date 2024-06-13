@@ -68,6 +68,9 @@ int RoboteqDevice::Connect(string port) {
     SetConfig(_MXRPM, 0,(int)max_rpm_);
     SetConfig(_MXRPM, 1,(int)max_rpm_);
 
+    //SETTING INTEGRAL
+    SetConfig(_KIG, 0,1500000);
+    SetConfig(_KIG, 1,1500000);
 
     int status;
     string response;

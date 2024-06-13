@@ -514,4 +514,7 @@
 #define _SBEE			224
 #define _PSA			225
 #define _MSP			226
+#define _KPG            240
+#define _KDG            242
+#define _KIG            241
 #endif
